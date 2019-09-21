@@ -9,7 +9,7 @@
         :style="{ lineHeight: '64px' }"
       >
         <a-menu-item key="1">Etcd Keys</a-menu-item>
-        <a-menu-item key="2">Config Conter</a-menu-item>
+        <a-menu-item key="2">Config Center</a-menu-item>
         <a-menu-item key="3">Service Register</a-menu-item>
       </a-menu>
     </a-layout-header>
@@ -24,7 +24,7 @@
       -->
       <router-view :style="{ background: '#fff', padding: '24px', minHeight: '380px' }"></router-view>
     </a-layout-content>
-    <a-layout-footer :style="{ textAlign: 'center' }">Ant Design ©2018 Created by Ant UED</a-layout-footer>
+    <a-layout-footer :style="{ textAlign: 'center' }">Micro Service Manage  r ©2018 Created by liujiangwei</a-layout-footer>
   </a-layout>
 </template>
 

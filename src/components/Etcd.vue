@@ -53,6 +53,21 @@ export default {
           title: "版本",
           dataIndex: "version",
           key: "version"
+        },
+        {
+          title: "租约",
+          dataIndex: "lease",
+          key: "lease"
+        },
+        {
+          title: "租约时间",
+          dataIndex: "granted_ttl",
+          key: "granted_ttl"
+        },
+        {
+          title: "剩余时间",
+          dataIndex: "ttl",
+          key: "ttl"
         }
       ],
       kvs: []

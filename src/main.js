@@ -16,7 +16,8 @@ Vue.config.productionTip = false
 
 const routes = [
   { path: '/', component: Etcd },
-  { path: '/bar', component: HelloWorld }
+  { path: '/config-center/', component: HelloWorld },
+  { path: '/config-project', component: HelloWorld }
 ]
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes

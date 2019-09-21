@@ -26,30 +26,44 @@ func List(c echo.Context) error{
 		options = append(options, clientv3.WithPrefix())
 	}
 
+	//putResp, putErr := client.Put(context.Background(), "a", "b")
 	resp, err := client.Get(context.Background(), key, options...)
 	if err != nil{
 		return err
 	}
 
-	var data = make([]map[string]interface{}, 0)
+	var data []keyData
 
 	for _, kv := range resp.Kvs{
-		data = append(data, map[string]interface{}{
-			"key":string(kv.Key),
-			"value": string(kv.Value),
-			"version": kv.Version,
-		})
+		kd := keyData{
+			Key: string(kv.Key),
+			Value:string(kv.Value),
+			Version: kv.Version,
+			Lease: kv.Lease,
+		}
+
+		if kv.Lease > 0{
+			lease := clientv3.NewLease(client)
+			leaseResp, leaseErr := lease.TimeToLive(context.Background(), clientv3.LeaseID(kv.Lease))
+			if leaseErr == nil{
+				kd.GrantedTtl = leaseResp.GrantedTTL
+				kd.Ttl = leaseResp.TTL
+			}else{
+				c.Logger().Info(err)
+			}
+		}
+
+		data = append(data, kd)
 	}
 
 	return c.JSON(http.StatusOK, data)
 }
 
-type tree struct {
-	Item []item
-}
-
-type item struct {
-	Key string
-	Value string
-	Version int64
+type keyData struct {
+	Key string `json:"key"`
+	Value string	`json:"value"`
+	Version int64 `json:"version"`
+	Lease int64 `json:"lease"`
+	Ttl int64 `json:"ttl"`
+	GrantedTtl int64 `json:"granted_ttl"`
 }
