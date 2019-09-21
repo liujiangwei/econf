@@ -1,7 +1,29 @@
-# econf
-基于etcd mysql的配置和服务发现管理
+# antd-demo
 
-# 1.0
+## Project setup
+```
+npm install
+```
 
-- init
-- etcd list
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
